@@ -4,6 +4,7 @@ import { InstallmentModule } from "./installment/installment.module";
 import { PaymentModule } from "./payment/payment.module";
 import { OrderModule } from "./order/order.module";
 import { UserModule } from "./user/user.module";
+import { DocumentationModule } from "./Documentation/documentation.module";
 import { HealthModule } from "./health/health.module";
 import { PrismaModule } from "./prisma/prisma.module";
 import { SecretsManagerModule } from "./providers/secrets/secretsManager.module";
@@ -26,6 +27,7 @@ import { AuthModule } from "./auth/auth.module";
     PaymentModule,
     OrderModule,
     UserModule,
+    DocumentationModule,
     HealthModule,
     PrismaModule,
     SecretsManagerModule,
