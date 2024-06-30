@@ -1,0 +1,68 @@
+datasource db {
+  provider = "mongodb"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Product {
+  createdAt   DateTime @default(now())
+  description String?
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  name        String?
+  price       Float?
+  updatedAt   DateTime @updatedAt
+}
+
+model Installment {
+  amount    Float?
+  createdAt DateTime               @default(now())
+  dueDate   DateTime?
+  id        String                 @id @default(auto()) @map("_id") @db.ObjectId
+  status    EnumInstallmentStatus?
+  updatedAt DateTime               @updatedAt
+}
+
+model Payment {
+  amount      Float?
+  createdAt   DateTime           @default(now())
+  id          String             @id @default(auto()) @map("_id") @db.ObjectId
+  method      EnumPaymentMethod?
+  paymentDate DateTime?
+  updatedAt   DateTime           @updatedAt
+}
+
+model Order {
+  createdAt   DateTime         @default(now())
+  id          String           @id @default(auto()) @map("_id") @db.ObjectId
+  orderDate   DateTime?
+  status      EnumOrderStatus?
+  totalAmount Float?
+  updatedAt   DateTime         @updatedAt
+}
+
+model User {
+  createdAt DateTime @default(now())
+  email     String?  @unique
+  firstName String?
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  lastName  String?
+  password  String
+  roles     Json
+  updatedAt DateTime @updatedAt
+  username  String   @unique
+}
+
+enum EnumInstallmentStatus {
+  Option1
+}
+
+enum EnumPaymentMethod {
+  Option1
+}
+
+enum EnumOrderStatus {
+  Option1
+}
